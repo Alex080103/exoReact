@@ -160,7 +160,7 @@
 
     <!-- ARRAY REACT -->
 
-    <!-- const livres = [
+    <!-- const content = [
         {
             "titre": "Livre 1",
             "auteur": "Auteur 1",
