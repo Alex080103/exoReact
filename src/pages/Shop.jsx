@@ -1,49 +1,24 @@
 import { useEffect, useState } from "react";
 import Cards from "../components/Cards";
 import axios from "axios";
-const array = [
-  {
-    titre: "Livre 1",
-    auteur: "Auteur 1",
-    prix: 19.99,
-    image: "https://picsum.photos/id/15/600",
-  },
-  {
-    titre: "Livre 2",
-    auteur: "Auteur 2",
-    prix: 24.99,
-    image: "https://picsum.photos/id/199/600",
-  },
-  {
-    titre: "Livre 3",
-    auteur: "Auteur 3",
-    prix: 14.99,
-    image: "https://picsum.photos/id/204/600",
-  },
-  {
-    titre: "Livre 4",
-    auteur: "Auteur 4",
-    prix: 50.99,
-    image: "https://picsum.photos/id/228/600",
-  },
-];
 
 const Shop = () => {
-  const [content, setContent] = useState(array);
+  const [content, setContent] = useState([]);
   const [shopList, setShopList] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  //   useEffect(() => {
-  //     axios
-  //       .get("https://www.themealdb.com/api/json/v1/1/search.php?s=tomato")
-  //       .then(function (response) {
-  //         console.log(response.data.meals);
-  //         setContent(response.data.meals);
-  //       });
-  //   }, []);
+  useEffect(() => {
+    axios
+      .get("https://www.themealdb.com/api/json/v1/1/search.php?s=tomato")
+      .then(function (response) {
+        setContent(response.data.meals);
+      });
+  }, []);
 
   function handleRemoveFromPanel(titre) {
-    setShopList((shopList) => shopList.filter((item) => item.titre !== titre));
+    setShopList((shopList) =>
+      shopList.filter((item) => item.strMeal !== titre)
+    );
   }
   return (
     <div className="grid  md:grid-cols-[70%_30%]">
@@ -107,7 +82,8 @@ const Shop = () => {
                         <li className="flex py-6">
                           <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                             <img
-                              src={object.image}
+                              src={object.strMealThumb}
+                              //   src={object.image}
                               alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
                               className="h-full w-full object-cover object-center"
                             ></img>
@@ -116,19 +92,20 @@ const Shop = () => {
                             <div>
                               <div className="flex justify-between text-base font-medium text-gray-900">
                                 <h3>
-                                  <a href="#">{object.titre}</a>
+                                  {/* <a href="#">{object.titre}</a> */}
+                                  <a href="#">{object.strMeal}</a>
                                 </h3>
-                                <p className="ml-4">{object.prix}</p>
+                                {/* <p className="ml-4">{object.prix}</p> */}
                               </div>
                             </div>
                             <div className="flex flex-1 items-end justify-between text-sm">
-                              <p className="text-gray-500">{object.auteur}</p>
-
+                              <p className="text-gray-500">{object.strArea}</p>
+                              {/* <p className="text-gray-500">{object.auteur}</p> */}
                               <div className="flex">
                                 <button
                                   type="button"
                                   onClick={() =>
-                                    handleRemoveFromPanel(object.titre)
+                                    handleRemoveFromPanel(object.strMeal)
                                   }
                                   className="font-medium text-indigo-600 hover:text-indigo-500"
                                 >
@@ -147,7 +124,7 @@ const Shop = () => {
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
               <div className="flex justify-between text-base font-medium text-gray-900">
                 <p>Subtotal</p>
-                <p>{totalPrice}€</p>
+                {/* <p>{totalPrice}€</p> */}
               </div>
               <p className="mt-0.5 text-sm text-gray-500">
                 Shipping and taxes calculated at checkout.

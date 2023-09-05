@@ -17,7 +17,7 @@ const Cards = ({
       setIsAdded((isAdded) => !isAdded);
     } else {
       setIsAdded((isAdded) => !isAdded);
-      handleRemoveFromPanel(object.titre);
+      handleRemoveFromPanel(object.strMeal);
     }
   }
 
@@ -27,8 +27,8 @@ const Cards = ({
         <div className="h-full w-full">
           <div className="relative w-full">
             <img
-              src={object.image}
-              // src={object.strMealThumb}
+              // src={object.image}
+              src={object.strMealThumb}
               className="mb-3 max-h-[300px] h-full w-full rounded-xl 3xl:h-full 3xl:w-full"
               alt=""
             ></img>
@@ -56,18 +56,22 @@ const Cards = ({
           </div>
           <div className="mb-3 flex items-center justify-between px-1 md:items-start">
             <div className="mb-2">
-              <p className="text-lg font-bold text-navy-700">{object.titre}</p>
+              <p className="text-lg font-bold text-navy-700">
+                {/* {object.titre} */}
+                {object.strMeal}
+              </p>
               <p className="mt-1 text-sm font-medium text-gray-600 md:mt-2">
-                {object.auteur}
+                {/* {object.auteur} */}
+                {object.strArea}
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-between md:items-center lg:justify-between ">
-            <div className="flex">
+          <div className="flex items-center justify-between md:items-center lg:justify-end ">
+            {/* <div className="flex">
               <p className="!mb-0 text-sm font-bold text-brand-500">
                 Prix actuel: {object.prix} <span>€</span>
               </p>
-            </div>
+            </div> */}
             {/* BUTTON TO ADD */}
             <button
               onClick={() => handleOnClick()}
