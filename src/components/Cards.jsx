@@ -17,6 +17,7 @@ const Cards = ({
       setIsAdded((isAdded) => !isAdded);
     } else {
       setIsAdded((isAdded) => !isAdded);
+      setTotalPrice(totalPrice - object.prix);
       handleRemoveFromPanel(object.strMeal);
     }
   }
