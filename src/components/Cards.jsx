@@ -2,11 +2,14 @@ import { useState } from "react";
 
 const Cards = ({
   object,
+  index,
   setShopList,
   shopList,
   totalPrice,
   setTotalPrice,
   handleRemoveFromPanel,
+  isObjectAdded,
+  setIsObjectAdded,
 }) => {
   const [isAdded, setIsAdded] = useState(false);
 
